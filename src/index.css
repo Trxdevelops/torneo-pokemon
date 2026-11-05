@@ -1,0 +1,467 @@
+/* ---------- Variables y temas ---------- */
+/* Tema oscuro: es el de base */
+:root {
+  color-scheme: dark;
+  --color-primario: #e3350d;
+  --color-primario-oscuro: #b72a0a;
+  --color-titulo: #ff6b4a;
+  --color-texto: #e5e7eb;
+  --color-suave: #9ca3af;
+  --color-borde: #374151;
+  --color-fondo: #111317;
+  --color-tarjeta: #1b1e23;
+  --color-input: #23272e;
+  --color-foco: #fca5a5;
+  --color-error: #f87171;
+  --color-error-fondo: #2d1517;
+  --color-error-borde: #7f1d1d;
+  --color-exito: #4ade80;
+  --color-exito-fondo: #10261a;
+  --color-exito-borde: #166534;
+  --radio: 10px;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+/* Tema claro: se activa con data-tema="claro" en <html> */
+:root[data-tema='claro'] {
+  color-scheme: light;
+  --color-titulo: #e3350d;
+  --color-texto: #1f2937;
+  --color-suave: #6b7280;
+  --color-borde: #d1d5db;
+  --color-fondo: #f4f5f7;
+  --color-tarjeta: #ffffff;
+  --color-input: #ffffff;
+  --color-error: #b91c1c;
+  --color-error-fondo: #fef2f2;
+  --color-error-borde: #fecaca;
+  --color-exito: #15803d;
+  --color-exito-fondo: #f0fdf4;
+  --color-exito-borde: #bbf7d0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+/* ---------- Layout ---------- */
+.app {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--color-tarjeta);
+  border-right: 1px solid var(--color-borde);
+}
+
+.sidebar-cabecera {
+  margin-bottom: 24px;
+}
+
+.sidebar-cabecera h1 {
+  color: var(--color-titulo);
+  font-size: 1.75rem;
+}
+
+.sidebar-cabecera p {
+  margin: 4px 0 0;
+  color: var(--color-suave);
+}
+
+.principal {
+  padding: 24px;
+}
+
+/* ---------- Formulario ---------- */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formulario h2 {
+  font-size: 1.25rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  font: inherit;
+  color: inherit;
+  background: var(--color-input);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 1px;
+}
+
+input[aria-invalid='true'],
+select[aria-invalid='true'] {
+  border-color: var(--color-error);
+  background: var(--color-error-fondo);
+}
+
+.error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 0.85rem;
+}
+
+/* ---------- Equipo en el formulario ---------- */
+.equipo {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.equipo legend {
+  padding: 0 4px;
+  font-weight: 600;
+}
+
+.equipo-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.campo-pokemon {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.campo-pokemon-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.campo-pokemon label {
+  font-size: 0.8rem;
+}
+
+.equipo > .error {
+  margin-top: 8px;
+}
+
+.campo-checkbox {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.campo-checkbox input {
+  width: auto;
+  accent-color: var(--color-primario);
+}
+
+.campo-checkbox .error {
+  flex-basis: 100%;
+}
+
+/* ---------- Botones y avisos ---------- */
+button {
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primario);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-primario-oscuro);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.aviso {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+.aviso-error {
+  color: var(--color-error);
+  background: var(--color-error-fondo);
+  border: 1px solid var(--color-error-borde);
+}
+
+.aviso-exito {
+  color: var(--color-exito);
+  background: var(--color-exito-fondo);
+  border: 1px solid var(--color-exito-borde);
+}
+
+.estado {
+  color: var(--color-suave);
+}
+
+.estado-error {
+  color: var(--color-error);
+}
+
+.estado-error p {
+  margin: 0 0 8px;
+}
+
+/* ---------- Lista de equipos ---------- */
+.lista-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.contador {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primario);
+  border-radius: 999px;
+}
+
+.actualizando {
+  color: var(--color-suave);
+  font-size: 0.85rem;
+}
+
+.equipos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.tarjeta {
+  padding: 16px;
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.tarjeta-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tarjeta-cabecera h3 {
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.tarjeta-region {
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  color: var(--color-suave);
+  background: var(--color-fondo);
+  border-radius: 999px;
+}
+
+.tarjeta-equipo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tarjeta-equipo li {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  background: var(--color-fondo);
+  border-radius: 8px;
+}
+
+.sprite-vacio {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--color-suave);
+  border: 2px dashed var(--color-borde);
+  border-radius: 50%;
+}
+
+/* ---------- Botón de tema ---------- */
+.sidebar-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.boton-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  color: var(--color-texto);
+  background: transparent;
+  border: 1px solid var(--color-borde);
+}
+
+.boton-tema:hover:not(:disabled) {
+  background: var(--color-fondo);
+}
+
+.interruptor {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  background: var(--color-suave);
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+.interruptor::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.boton-tema[aria-checked='true'] .interruptor {
+  background: var(--color-primario);
+}
+
+.boton-tema[aria-checked='true'] .interruptor::after {
+  transform: translateX(14px);
+}
+
+/* ---------- Pantallas grandes: los 16 equipos llenan la zona derecha ---------- */
+@media (min-width: 1100px) and (min-height: 640px) {
+  .principal {
+    height: 100vh;
+  }
+
+  .lista-equipos {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .equipos {
+    flex: 1;
+    min-height: 0;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .tarjeta {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 12px;
+  }
+
+  .tarjeta-cabecera {
+    margin-bottom: 8px;
+  }
+
+  .tarjeta-equipo {
+    flex: 1;
+    min-height: 0;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .tarjeta-equipo li {
+    align-items: center;
+    min-height: 0;
+  }
+
+  .tarjeta-equipo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .tarjeta-equipo .sprite-vacio {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 800px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-borde);
+  }
+}
